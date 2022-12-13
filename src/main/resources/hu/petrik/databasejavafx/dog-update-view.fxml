@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
-</AnchorPane>
+<VBox alignment="TOP_CENTER" fx:controller="hu.petrik.databasejavafx.DogUpdateController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+        <TextField fx:id="nameField" maxWidth="200.0" minWidth="100.0" prefWidth="100.0" />
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Age" />
+        <Spinner fx:id="ageField" prefWidth="100.0" />
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Breed" />
+        <TextField fx:id="breedField" maxWidth="200.0" minWidth="100.0" prefWidth="100.0" />
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#handleCancel" text="Cancel" />
+                <Button mnemonicParsing="false" onAction="#handleUpdate" text="Update" />
+            </children>
+        </HBox>
+    </children>
+</VBox>

@@ -1,7 +1,8 @@
-package hu.petrik.console;
+package hu.petrik.databasejavafx;
 
-import data.Dog;
-import org.jetbrains.annotations.NotNull;
+
+
+import hu.petrik.data.Dog;
 
 import java.io.BufferedReader;
 import java.net.URI;
@@ -52,7 +53,7 @@ public class DogDB {
         return dogs;
     }
 
-    public boolean insertDog(@NotNull Dog dog) throws SQLException {
+    public boolean insertDog(Dog dog) throws SQLException {
         String sql = String.format("INSERT INTO %s(%s, %s, %s) VALUES (?, ?, ?)",
                 TABLE_NAME, COL_NAME, COL_AGE, COL_BREED);
 
@@ -60,7 +61,7 @@ public class DogDB {
         statement.setString(1, dog.getName());
         statement.setInt(2, dog.getAge());
         statement.setString(3, dog.getBreed());
-        return statement.execute();
+        return statement.executeUpdate() > 0;
     }
 
     public boolean deleteDog(int id) throws SQLException {
@@ -68,8 +69,20 @@ public class DogDB {
 
         PreparedStatement statement = conn.prepareStatement(sql);
         statement.setInt(1, id);
-        return statement.execute();
+        return statement.executeUpdate() > 0;
     }
+
+    public boolean updateDog(Dog dog) throws SQLException {
+        String sql = String.format("UPDATE %s SET name = ?, age = ?, breed = ? WHERE id = ?", TABLE_NAME);
+
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, dog.getName());
+        statement.setInt(2, dog.getAge());
+        statement.setString(3, dog.getBreed());
+        statement.setInt(4, dog.getId());
+        return statement.executeUpdate() > 0;
+    }
+
 
 
 
